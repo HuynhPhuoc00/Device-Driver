@@ -1,0 +1,1 @@
+cmd_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.ko := arm-linux-gnueabihf-ld -r -EL -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.ko /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.o /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o;  true
