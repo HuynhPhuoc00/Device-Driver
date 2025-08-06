@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/modules.order := {   echo /home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/module_device_setup.o; :; } > /home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/modules.order

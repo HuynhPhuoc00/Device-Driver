@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/module_device_setup.mod := printf '%s\n'   module_device_setup.o | awk '!x[$$0]++ { print("/home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/"$$0) }' > /home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/module_device_setup.mod

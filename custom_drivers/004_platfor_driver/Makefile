@@ -1,8 +1,8 @@
-obj-m := module_device_setup.o
+obj-m := module_driver.o 
 
 ARCH = arm
 CROSS_COMPILE = arm-linux-gnueabihf-
-KERNELDIR = /home/phuoc/workspace/ldd/source/linux_bbb_5.10/
+KERNELDIR = ../../source/linux_bbb_5.10/
 HOST_KERNELDIR = /lib/modules/$(shell uname -r)/build/
 
 all:
