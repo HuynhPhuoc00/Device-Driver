@@ -1,0 +1,1 @@
+savedcmd_/home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/Module.symvers -T /home/phuoc/workspace/ldd/custom_drivers/004_platfor_driver/modules.order -i Module.symvers -e 
