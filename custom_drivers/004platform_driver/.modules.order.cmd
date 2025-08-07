@@ -1,0 +1,1 @@
+savedcmd_/home/phuoc/Documents/Device-Driver/custom_drivers/004platform_driver/modules.order := {   echo /home/phuoc/Documents/Device-Driver/custom_drivers/004platform_driver/module_driver.o;   echo /home/phuoc/Documents/Device-Driver/custom_drivers/004platform_driver/module_device_setup.o; :; } > /home/phuoc/Documents/Device-Driver/custom_drivers/004platform_driver/modules.order

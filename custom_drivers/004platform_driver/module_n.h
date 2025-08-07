@@ -12,39 +12,23 @@
 #define WRONLY  0x10 // Write permissions
 #define RDWR    0x11 // Read Write permissions 
 
-#define NO_OF_DEVICES 4 // Number of devices
-
-#define MEM_MAX_MOD_1 1024// Size of the device memory
-#define MEM_MAX_MOD_2 1024// Size of the device memory
-#define MEM_MAX_MOD_3 1024// Size of the device memory
-#define MEM_MAX_MOD_4 1024// Size of the device memory
-
-// Buffer to hold device data
-char device_buff_mod1[MEM_MAX_MOD_1];
-char device_buff_mod2[MEM_MAX_MOD_2];
-char device_buff_mod3[MEM_MAX_MOD_3];
-char device_buff_mod4[MEM_MAX_MOD_4];
-
-// Struct private data
-struct module_private_data {
+/* Device private data*/
+struct device_private_data{
+    struct Module_platform_data pdata;
     char *buff;
-    unsigned size;
-    const char *serial_number;
-    int perm;
-    struct cdev cdev; // Character device structure
+    dev_t dev_num;
+    struct cdev cdev;
 };
 
-// Driver private data structure
-struct module_private_data_driver
-{
-    int total_devices; // Total number of devices
-    dev_t dev_num; // This holds the device number
-
-    struct class *class_module; // Device class
-    struct device *device_module; // Device structure
-
-    struct module_private_data module_data[NO_OF_DEVICES]; // Array of module data for each device
+/* Driver private data*/
+struct driver_private_data{
+    int total_devices;
+    dev_t dev_num_base;
+    struct class *class_module;
+    struct device *device_module;
 };
+
+struct driver_private_data drv_data;
 
 loff_t module_lseek(struct file *filp, loff_t off, int whence);
 ssize_t module_read(struct file *filp, char __user *buff, size_t count, loff_t *f_pos);

@@ -1,4 +1,5 @@
-obj-m := module_driver.o 
+obj-m += module_driver.o
+obj-m += module_device_setup.o
 
 ARCH = arm
 CROSS_COMPILE = arm-linux-gnueabihf-
