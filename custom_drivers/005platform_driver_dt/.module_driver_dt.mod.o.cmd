@@ -1,8 +1,10 @@
-cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o := arm-linux-gnueabihf-gcc -Wp,-MMD,/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/.main.o.d -nostdinc -isystem /home/phuoc/Documents/Device-Driver/downloads/gcc-linaro-12.3.1-2023.06-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/12.3.1/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -fmacro-prefix-map=./= -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -msoft-float -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-address-of-packed-member -O2 -fno-allow-store-data-races -Wframe-larger-than=1024 -fstack-protector-strong -Wimplicit-fallthrough -Wno-unused-but-set-variable -Wno-unused-const-variable -fomit-frame-pointer -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -Wno-zero-length-bounds -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"main"' -DKBUILD_MODNAME='"main"' -c -o /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.c
+cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.o := arm-linux-gnueabihf-gcc -Wp,-MMD,/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/.module_driver_dt.mod.o.d -nostdinc -isystem /home/phuoc/Documents/Device-Driver/downloads/gcc-linaro-12.3.1-2023.06-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/12.3.1/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -fmacro-prefix-map=./= -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -msoft-float -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-address-of-packed-member -O2 -fno-allow-store-data-races -Wframe-larger-than=1024 -fstack-protector-strong -Wimplicit-fallthrough -Wno-unused-but-set-variable -Wno-unused-const-variable -fomit-frame-pointer -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -Wno-zero-length-bounds -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"module_driver_dt.mod"' -DKBUILD_MODNAME='"module_driver_dt"' -c -o /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.o /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.c
 
-source_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o := /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.c
+source_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.o := /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.c
 
-deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o := \
+deps_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.o := \
+    $(wildcard include/config/module/unload.h) \
+    $(wildcard include/config/retpoline.h) \
   include/linux/kconfig.h \
     $(wildcard include/config/cc/version/text.h) \
     $(wildcard include/config/cpu/big/endian.h) \
@@ -15,7 +17,6 @@ deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o := 
   include/linux/compiler_attributes.h \
   include/linux/compiler-gcc.h \
     $(wildcard include/config/arm64.h) \
-    $(wildcard include/config/retpoline.h) \
     $(wildcard include/config/arch/use/builtin/bswap.h) \
     $(wildcard include/config/kcov.h) \
   include/linux/module.h \
@@ -37,7 +38,6 @@ deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o := 
     $(wildcard include/config/ftrace/mcount/record.h) \
     $(wildcard include/config/kprobes.h) \
     $(wildcard include/config/have/static/call/inline.h) \
-    $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/constructors.h) \
     $(wildcard include/config/function/error/injection.h) \
   include/linux/list.h \
@@ -571,7 +571,14 @@ deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o := 
     $(wildcard include/config/have/mod/arch/specific.h) \
     $(wildcard include/config/modules/use/elf/rel.h) \
     $(wildcard include/config/modules/use/elf/rela.h) \
+  include/linux/build-salt.h \
+    $(wildcard include/config/build/salt.h) \
+  include/linux/elfnote.h \
+  include/linux/vermagic.h \
+    $(wildcard include/config/preempt.h) \
+  include/generated/utsrelease.h \
+  arch/arm/include/asm/vermagic.h \
 
-/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o: $(deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o)
+/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.o: $(deps_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.o)
 
-$(deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o):
+$(deps_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod.o):

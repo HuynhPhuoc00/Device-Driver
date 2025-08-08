@@ -1,1 +1,1 @@
-cmd_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/modules.order := {   echo /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.ko; :; } | awk '!x[$$0]++' - > /home/phuoc/workspace/ldd/custom_drivers/001hello_word/modules.order
+cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/modules.order := {   echo /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.ko; :; } | awk '!x[$$0]++' - > /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/modules.order

@@ -129,9 +129,11 @@ int Module_platform_driver_probe(struct platform_device *pdev){
 
 /* Call when the device is removed from the system */
 int Module_platform_driver_remove(struct platform_device *pdev){
+    struct device_private_data *dev_data;
+
     pr_info("%s : Device probe remove\n", __func__);
     
-    struct device_private_data *dev_data = dev_get_drvdata(&pdev->dev);
+    dev_data = dev_get_drvdata(&pdev->dev);
     device_destroy(drv_data.class_module, dev_data->dev_num);
     cdev_del(&dev_data->cdev);
     drv_data.total_devices--;
@@ -175,7 +177,11 @@ static int __init __my_module_driver_init(void){
     }
 
     /* 2. Create device class under /sys/class */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,12,0)
     drv_data.class_module = class_create("device_class");
+#else
+    drv_data.class_module = class_create(THIS_MODULE, "device_class");
+#endif
     if(IS_ERR(drv_data.class_module)) {
         pr_info("%s : Failed to create device class.\n", __func__);
         ret = PTR_ERR(drv_data.class_module);

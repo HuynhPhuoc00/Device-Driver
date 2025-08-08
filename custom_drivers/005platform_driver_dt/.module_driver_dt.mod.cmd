@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod := { echo  /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.o;  echo; } > /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod

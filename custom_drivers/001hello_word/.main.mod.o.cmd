@@ -1,8 +1,8 @@
-cmd_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := arm-linux-gnueabihf-gcc -Wp,-MMD,/home/phuoc/workspace/ldd/custom_drivers/001hello_word/.main.mod.o.d -nostdinc -isystem /home/phuoc/workspace/ldd/downloads/gcc-linaro-12.3.1-2023.06-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/12.3.1/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -fmacro-prefix-map=./= -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -msoft-float -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-address-of-packed-member -O2 -fno-allow-store-data-races -Wframe-larger-than=1024 -fstack-protector-strong -Wimplicit-fallthrough -Wno-unused-but-set-variable -Wno-unused-const-variable -fomit-frame-pointer -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -Wno-zero-length-bounds -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"main.mod"' -DKBUILD_MODNAME='"main"' -c -o /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.c
+cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.o := arm-linux-gnueabihf-gcc -Wp,-MMD,/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/.main.mod.o.d -nostdinc -isystem /home/phuoc/Documents/Device-Driver/downloads/gcc-linaro-12.3.1-2023.06-x86_64_arm-linux-gnueabihf/bin/../lib/gcc/arm-linux-gnueabihf/12.3.1/include -I./arch/arm/include -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -fmacro-prefix-map=./= -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Werror=return-type -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -msoft-float -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-address-of-packed-member -O2 -fno-allow-store-data-races -Wframe-larger-than=1024 -fstack-protector-strong -Wimplicit-fallthrough -Wno-unused-but-set-variable -Wno-unused-const-variable -fomit-frame-pointer -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -Wno-zero-length-bounds -Wno-array-bounds -Wno-stringop-overflow -Wno-restrict -Wno-maybe-uninitialized -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"main.mod"' -DKBUILD_MODNAME='"main"' -c -o /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.o /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.c
 
-source_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.c
+source_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.o := /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.c
 
-deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
+deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/retpoline.h) \
   include/linux/kconfig.h \
@@ -70,7 +70,6 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
   include/linux/kernel.h \
     $(wildcard include/config/preempt/voluntary.h) \
     $(wildcard include/config/debug/atomic/sleep.h) \
-    $(wildcard include/config/preempt/rt.h) \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/prove/locking.h) \
     $(wildcard include/config/panic/timeout.h) \
@@ -104,6 +103,7 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
   arch/arm/include/asm/bitops.h \
   include/linux/irqflags.h \
     $(wildcard include/config/trace/irqflags.h) \
+    $(wildcard include/config/preempt/rt.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
     $(wildcard include/config/preempt/tracer.h) \
     $(wildcard include/config/trace/irqflags/support.h) \
@@ -192,7 +192,6 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/console/loglevel/default.h) \
     $(wildcard include/config/console/loglevel/quiet.h) \
     $(wildcard include/config/early/printk.h) \
-    $(wildcard include/config/printk/nmi.h) \
     $(wildcard include/config/printk.h) \
     $(wildcard include/config/dynamic/debug.h) \
     $(wildcard include/config/dynamic/debug/core.h) \
@@ -211,6 +210,7 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/hz.h) \
   include/uapi/asm-generic/param.h \
   include/linux/spinlock_types.h \
+  include/linux/spinlock_types_raw.h \
     $(wildcard include/config/debug/spinlock.h) \
     $(wildcard include/config/debug/lock/alloc.h) \
   arch/arm/include/asm/spinlock_types.h \
@@ -219,11 +219,13 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/preempt/lock.h) \
     $(wildcard include/config/lockdep.h) \
     $(wildcard include/config/lock/stat.h) \
-  include/linux/rwlock_types.h \
+  include/linux/rtmutex.h \
+    $(wildcard include/config/debug/mutexes.h) \
+    $(wildcard include/config/debug/rt/mutexes.h) \
+  include/linux/rbtree_type.h \
+  include/linux/spinlock_types_rt.h \
+  include/linux/rwlock_types_rt.h \
   include/linux/dynamic_debug.h \
-  include/linux/jump_label.h \
-    $(wildcard include/config/have/arch/jump/label/relative.h) \
-  arch/arm/include/asm/jump_label.h \
   arch/arm/include/asm/div64.h \
   arch/arm/include/asm/compiler.h \
   include/asm-generic/div64.h \
@@ -303,6 +305,7 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
   include/linux/preempt.h \
     $(wildcard include/config/preempt/count.h) \
     $(wildcard include/config/trace/preempt/toggle.h) \
+    $(wildcard include/config/preempt/lazy.h) \
     $(wildcard include/config/preempt/notifiers.h) \
   arch/arm/include/generated/asm/preempt.h \
   include/asm-generic/preempt.h \
@@ -370,8 +373,7 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
   include/asm-generic/mmiowb.h \
     $(wildcard include/config/mmiowb.h) \
   arch/arm/include/asm/spinlock.h \
-  include/linux/rwlock.h \
-    $(wildcard include/config/preempt.h) \
+  include/linux/rwlock_rt.h \
   include/linux/spinlock_api_smp.h \
     $(wildcard include/config/inline/spin/lock.h) \
     $(wildcard include/config/inline/spin/lock/bh.h) \
@@ -384,25 +386,7 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/inline/spin/unlock/irq.h) \
     $(wildcard include/config/inline/spin/unlock/irqrestore.h) \
     $(wildcard include/config/generic/lockbreak.h) \
-  include/linux/rwlock_api_smp.h \
-    $(wildcard include/config/inline/read/lock.h) \
-    $(wildcard include/config/inline/write/lock.h) \
-    $(wildcard include/config/inline/read/lock/bh.h) \
-    $(wildcard include/config/inline/write/lock/bh.h) \
-    $(wildcard include/config/inline/read/lock/irq.h) \
-    $(wildcard include/config/inline/write/lock/irq.h) \
-    $(wildcard include/config/inline/read/lock/irqsave.h) \
-    $(wildcard include/config/inline/write/lock/irqsave.h) \
-    $(wildcard include/config/inline/read/trylock.h) \
-    $(wildcard include/config/inline/write/trylock.h) \
-    $(wildcard include/config/inline/read/unlock.h) \
-    $(wildcard include/config/inline/write/unlock.h) \
-    $(wildcard include/config/inline/read/unlock/bh.h) \
-    $(wildcard include/config/inline/write/unlock/bh.h) \
-    $(wildcard include/config/inline/read/unlock/irq.h) \
-    $(wildcard include/config/inline/write/unlock/irq.h) \
-    $(wildcard include/config/inline/read/unlock/irqrestore.h) \
-    $(wildcard include/config/inline/write/unlock/irqrestore.h) \
+  include/linux/spinlock_rt.h \
   include/linux/wait.h \
   arch/arm/include/generated/asm/current.h \
   include/asm-generic/current.h \
@@ -413,9 +397,9 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
   include/linux/seqlock.h \
   include/linux/mutex.h \
     $(wildcard include/config/mutex/spin/on/owner.h) \
-    $(wildcard include/config/debug/mutexes.h) \
   include/linux/osq_lock.h \
   include/linux/debug_locks.h \
+  include/linux/mutex_rt.h \
   include/linux/ww_mutex.h \
     $(wildcard include/config/debug/ww/mutex/slowpath.h) \
   include/linux/nodemask.h \
@@ -465,8 +449,9 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/rwsem/spin/on/owner.h) \
     $(wildcard include/config/debug/rwsems.h) \
   include/linux/err.h \
-  include/linux/completion.h \
+  include/linux/rwsem-rt.h \
   include/linux/swait.h \
+  include/linux/completion.h \
   include/linux/uprobes.h \
     $(wildcard include/config/uprobes.h) \
   arch/arm/include/asm/uprobes.h \
@@ -570,6 +555,8 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/alpha.h) \
     $(wildcard include/config/ia64.h) \
     $(wildcard include/config/ppc64.h) \
+  include/linux/jump_label.h \
+    $(wildcard include/config/have/arch/jump/label/relative.h) \
   include/linux/rbtree_latch.h \
   include/linux/error-injection.h \
   include/asm-generic/error-injection.h \
@@ -588,9 +575,10 @@ deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o := \
     $(wildcard include/config/build/salt.h) \
   include/linux/elfnote.h \
   include/linux/vermagic.h \
+    $(wildcard include/config/preempt.h) \
   include/generated/utsrelease.h \
   arch/arm/include/asm/vermagic.h \
 
-/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o: $(deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o)
+/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.o: $(deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.o)
 
-$(deps_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod.o):
+$(deps_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod.o):

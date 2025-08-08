@@ -1,6 +1,4 @@
-obj-m += module_driver.o
-obj-m += module_device_setup.o
-
+obj-m := module_device_setup.o module_driver.o
 ARCH = arm
 CROSS_COMPILE = arm-linux-gnueabihf-
 KERNELDIR = ../../source/linux_bbb_5.10/

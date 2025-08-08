@@ -1,1 +1,1 @@
-cmd_/home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod := { echo  /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.o;  echo; } > /home/phuoc/workspace/ldd/custom_drivers/001hello_word/main.mod
+cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod := { echo  /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.o;  echo; } > /home/phuoc/Documents/Device-Driver/custom_drivers/001hello_word/main.mod
