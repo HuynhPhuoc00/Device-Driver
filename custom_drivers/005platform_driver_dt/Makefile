@@ -4,7 +4,7 @@ CROSS_COMPILE = arm-linux-gnueabihf-
 KERNELDIR = ../../source/linux_bbb_5.10/
 HOST_KERNELDIR = /lib/modules/$(shell uname -r)/build/
 
-PATH_DTBS = ../../source/linux_bbb_5.10/arch/arm/boot/dts/am335x-boneblack.dts
+PATH_DTBS = ../../source/linux_bbb_5.10/arch/arm/boot/dts/am335x-boneblack.dtb
 DEBIAN_FOLDER = /home/debian/drivers
 
 all:

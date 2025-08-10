@@ -13,25 +13,24 @@ ssize_t module_write(struct file *flip, const char __user *buff, size_t count, l
 }
 
 int Check_Permissions(int perm, int minor_n, int flags){
-    pr_info("%s : Checking permissions for minor number: %d\n", __func__, minor_n);
+    pr_info("Checking permissions for minor number: %d\n", minor_n);
     
     if(perm == RDWR){
         return 0;
     }
 
-    pr_info("%s : flags: %d, RFMODE_READ: %d, FMODE_WRITE: %d\n", __func__, flags,FMODE_READ , FMODE_WRITE);
-    // Read permissions
+   // Read permissions
     if((perm == RDONLY) && ((flags & FMODE_READ) && !(flags & FMODE_WRITE))){
-        pr_info("%s : Read permissions granted for minor number: %d\n", __func__, minor_n);
+        pr_info("Read permissions granted for minor number: %d\n", minor_n);
         return 0;
     }
 
     // Write permissions
     if((perm == WRONLY) && (!(flags & FMODE_READ) && (flags & FMODE_WRITE))){
-        pr_info("%s : Write permissions granted for minor number: %d\n", __func__, minor_n);
+        pr_info("Write permissions granted for minor number: %d\n", minor_n);
         return 0;
     }
-    pr_info("%s : Permission denied for minor number: %d\n", __func__, minor_n);
+    pr_info("Permission denied for minor number: %d\n", minor_n);
     return -EPERM; // Return error code for permission denied
 }
 
@@ -40,8 +39,39 @@ int module_open(struct inode *inode, struct file *flip){
 }
 
 int module_release(struct inode *inode, struct file *flip){
-    pr_info("%s : Device closed.\n", __func__);
+    pr_info("Device closed.\n");
     return 0; // Return 0 to indicate successful closing
+}
+
+struct Module_platform_data* dev_get_platdata_from_dt(struct device *dev){
+    struct device_node *dev_node = dev->of_node;
+    struct Module_platform_data *platform_data;
+
+    if(!dev_node){
+        /*Probe didnt happen because of device tree node*/
+        return NULL;
+    }
+    platform_data = devm_kzalloc(dev, sizeof(*platform_data), GFP_KERNEL);
+    if(!platform_data){
+        dev_info(dev, "Cannot allocate memory\n");
+        return ERR_PTR(-ENOMEM);
+    }
+
+    if(of_property_read_string(dev_node, "org,device-serial-num", &platform_data->serial_number)){
+        dev_info(dev, "Missing serial number property\n");
+        return ERR_PTR(-EINVAL);
+    }
+
+    if(of_property_read_u32(dev_node, "org,size", &platform_data->size)){
+        dev_info(dev, "Missing size property\n");
+        return ERR_PTR(-EINVAL);
+    }
+
+    if(of_property_read_u32(dev_node, "org,perm", &platform_data->perm)){
+        dev_info(dev, "Missing permission property\n");
+        return ERR_PTR(-EINVAL);
+    }
+    return platform_data;
 }
 
 // File operations of the driver
@@ -54,48 +84,80 @@ struct file_operations module_fops = {
     .owner = THIS_MODULE
 };
 
+/* Match for platform driver with device setup*/
+struct platform_driver Module_platform_driver = {
+    .probe = Module_platform_driver_probe,
+    .remove = Module_platform_driver_remove,
+    .id_table = device_id,
+    .driver = {
+        .name = "mod",
+        .of_match_table = of_match_ptr(mod_dt_match) 
+    }
+};
 
 /* Call when matched platform device is found */
 int Module_platform_driver_probe(struct platform_device *pdev){
     struct device_private_data *dev_data;
     struct Module_platform_data *platform_data;
+    struct device *dev;
+    /* Use to store ddected matched entry of "of_device_id" list of this driver */
+    const struct of_device_id *match;
     
+
+    int driver_data;
     int ret;
-    pr_info("%s : Device is detected\n", __func__);
-    /* 1. Get the platform data*/
-    platform_data = (struct Module_platform_data*)dev_get_platdata(&pdev->dev);
-    if(!platform_data){
-        pr_info("%s : No platform data availble\n", __func__);
+    dev = &pdev->dev;
+    dev_info(dev, "Device is detected\n");
+
+    /* Match will always be NULL if linux doesnt support device tree or CONFIG_OF is off*/
+    match = of_match_device(of_match_ptr(mod_dt_match), dev);
+    if(match){
+        platform_data = dev_get_platdata_from_dt(dev);
+            if(IS_ERR(platform_data)){
         return -EINVAL;
+        }
+    }
+    else{
+        platform_data = (struct Module_platform_data*)dev_get_platdata(dev);
+        driver_data = pdev->id_entry->driver_data;
     }
 
+    if(!platform_data){
+        dev_info(dev, "No platform data availble\n");
+        return -EINVAL;
+    }
+ 
+
     /* 2. Dynamic allocate memory for the device platform driver*/
-    dev_data = devm_kzalloc(&pdev->dev, sizeof(*dev_data), GFP_KERNEL);
+    dev_data = devm_kzalloc(dev, sizeof(*dev_data), GFP_KERNEL);
     if(!dev_data){ 
-        pr_info("%s : Cannot alloccate memory\n", __func__);
+        dev_info(dev, "Cannot alloccate memory\n");
         return -ENOMEM;
     }
 
     /* Set device_private_data pointer in platform device structure */
-    dev_set_drvdata(&pdev->dev, dev_data);
+    dev_set_drvdata(dev, dev_data);
 
     dev_data->pdata.size = platform_data->size;
     dev_data->pdata.perm = platform_data->perm;
     dev_data->pdata.serial_number = platform_data->serial_number;
 
-    pr_info("%s : Device serial number = %s\n", __func__, dev_data->pdata.serial_number);
-    pr_info("%s : Device size = %d\n", __func__, dev_data->pdata.size);
-    pr_info("%s : Device permission = %d\n", __func__, dev_data->pdata.perm);
+    pr_info("Device serial number = %s\n", dev_data->pdata.serial_number);
+    pr_info("Device size = %d\n", dev_data->pdata.size);
+    pr_info("Device permission = %d\n", dev_data->pdata.perm);
+    
+    pr_info("Config item1 = %d\n", Device_config[driver_data].config_item1);
+    pr_info("Config item2 = %d\n", Device_config[driver_data].config_item2);
     
     /* 3. Dynamic allocate memory for the device buffer using size*/
-    dev_data->buff = devm_kzalloc(&pdev->dev, dev_data->pdata.size, GFP_KERNEL);
+    dev_data->buff = devm_kzalloc(dev, dev_data->pdata.size, GFP_KERNEL);
     if(!dev_data->buff){
-        pr_info("%s : Cannot alloccate memory for buffer\n", __func__);
+        dev_info(dev, "Cannot alloccate memory for buffer\n");
         return -ENOMEM;
     }
 
     /* 4. Get the device number*/
-    dev_data->dev_num = drv_data.dev_num_base + pdev->id;
+    dev_data->dev_num = drv_data.dev_num_base + drv_data.total_devices;
 
     /* 5. cdev init and cdev add*/
     cdev_init(&dev_data->cdev, &module_fops);
@@ -103,19 +165,22 @@ int Module_platform_driver_probe(struct platform_device *pdev){
     ret = cdev_add(&dev_data->cdev,
                     dev_data->dev_num, 1);
         if (ret < 0) {
-            printk(KERN_ERR "Failed to add cdev.\n");
+            dev_err(dev, "Failed to add cdev.\n");
             return ret;
         }
 
-    /* 6. Create device file for the detected platform device */
+    /* 6. Create device file for the detected platform device 
+     *   Store at /dev/
+    */
+
     drv_data.device_module = device_create(
                                             drv_data.class_module, 
-                                            NULL,
+                                            dev,
                                             dev_data->dev_num, 
                                             NULL,
-                                            "my_device-%d", pdev->id);
+                                            "my_device-%d", drv_data.total_devices);
     if(IS_ERR(drv_data.device_module)) {
-        printk(KERN_ERR "Failed to create device.\n");
+        dev_err(dev, "Failed to create device.\n");
         ret = PTR_ERR(drv_data.device_module);
         cdev_del(&dev_data->cdev);
         return ret;
@@ -123,54 +188,28 @@ int Module_platform_driver_probe(struct platform_device *pdev){
 
     drv_data.total_devices++;
 
-    pr_info("%s : The probe was successful\n", __func__);
+    dev_info(dev, "The probe was successful\n");
     return 0; 
 }
 
 /* Call when the device is removed from the system */
 int Module_platform_driver_remove(struct platform_device *pdev){
     struct device_private_data *dev_data;
-
-    pr_info("%s : Device probe remove\n", __func__);
     
     dev_data = dev_get_drvdata(&pdev->dev);
     device_destroy(drv_data.class_module, dev_data->dev_num);
     cdev_del(&dev_data->cdev);
     drv_data.total_devices--;
 
-
+    dev_info(&pdev->dev, "Device probe remove\n");
     return 0;
 }
-
-struct platform_device_id device_id[] = {
-    [0] = {
-        .name = "device_A"
-    },
-    [1] = {
-        .name = "device_B"
-    },
-    [2] = {
-        .name = "device_C"
-    },
-    [3] = {
-        .name = "device_D"
-    }
-};
-
-struct platform_driver Module_platform_driver = {
-    .probe = Module_platform_driver_probe,
-    .remove = Module_platform_driver_remove,
-    .id_table = device_id,
-    .driver = {
-        .name = "char_device"
-    }
-};
 
 static int __init __my_module_driver_init(void){
     int ret;
     
     /* 1. Dynamic allocate a device number for MAX_DEVICES */
-    ret = alloc_chrdev_region(&drv_data.dev_num_base, 0, MAX_DEVICES, "module");
+    ret = alloc_chrdev_region(&drv_data.dev_num_base, 0, MAX_DEVICES, "mod");
     if (ret < 0){
         pr_err("Allocate driver failed");
         return ret;
@@ -183,7 +222,7 @@ static int __init __my_module_driver_init(void){
     drv_data.class_module = class_create(THIS_MODULE, "device_class");
 #endif
     if(IS_ERR(drv_data.class_module)) {
-        pr_info("%s : Failed to create device class.\n", __func__);
+        pr_info("Failed to create device class.\n");
         ret = PTR_ERR(drv_data.class_module);
         unregister_chrdev_region(drv_data.dev_num_base, MAX_DEVICES);
         return ret;
@@ -192,7 +231,7 @@ static int __init __my_module_driver_init(void){
     /* 3. Register a platform driver */
     platform_driver_register(&Module_platform_driver);
 
-    pr_info("%s : Module driver init\n", __func__);
+    pr_info("Module driver init\n");
     return 0; // Return 0 to indicate successful loading
 }
 
@@ -200,7 +239,7 @@ static void __exit __my_module_driver_exit(void){
     platform_driver_unregister(&Module_platform_driver);
     class_destroy(drv_data.class_module);
     unregister_chrdev_region(drv_data.dev_num_base, MAX_DEVICES);
-    pr_info("%s : Module driver exit\n", __func__);
+    pr_info("Module driver exit\n");
 }
 
 module_init(__my_module_driver_init);
@@ -210,6 +249,6 @@ module_exit(__my_module_driver_exit);
 // module_platform_driver(Module_platform_driver);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("002");
-MODULE_DESCRIPTION("A simple module driver for a pseudo character device");
-MODULE_INFO(boarder, "Module001");
+MODULE_AUTHOR("005");
+MODULE_DESCRIPTION("A simple module driver for platform devices");
+MODULE_INFO(boarder, "Platform Devices");
