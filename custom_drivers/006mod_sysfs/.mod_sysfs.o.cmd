@@ -1,0 +1,1 @@
+savedcmd_/home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/mod_sysfs.o := ld -m elf_x86_64 -z noexecstack   -r -o /home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/mod_sysfs.o @/home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/mod_sysfs.mod 
