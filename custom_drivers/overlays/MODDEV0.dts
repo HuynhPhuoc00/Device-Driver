@@ -1,0 +1,24 @@
+/dts-v1/;
+/plugin/;
+
+/{
+    fragment@0{
+	    target  = <&moddev1>;
+	    __overlay__{
+            status = "disabled";
+        };
+    };
+    fragment@1{
+	    target  = <&moddev2>;
+	    __overlay__{
+            status = "disabled";
+        };
+    };
+    fragment@2{
+	    target  = <&moddev3>;
+	    __overlay__{
+            org,size = <1048>;
+            org,device-serial-num = "XXX";
+        };
+    };
+};

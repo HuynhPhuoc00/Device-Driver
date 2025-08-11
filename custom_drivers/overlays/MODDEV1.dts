@@ -1,0 +1,11 @@
+/dts-v1/;
+/plugin/;
+
+/{
+    fragment@0{
+	    target  = <&moddev3>;
+	    __OVERLAY__{
+            status = "disabled";
+        };
+    };
+};
