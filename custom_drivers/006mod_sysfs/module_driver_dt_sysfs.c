@@ -85,13 +85,28 @@ ssize_t show_serial_num(struct device *dev, struct device_attribute * attr, char
 static DEVICE_ATTR(max_size, S_IRUGO|S_IWUSR, show_max_size, store_max_size);
 static DEVICE_ATTR(serial_num, S_IRUGO, show_serial_num, NULL);
 
+struct attribute *mod_attrs[]={
+    &dev_attr_max_size.attr,
+    &dev_attr_serial_num.attr,
+};
+
+struct attribute_group mod_attrs_group = {
+    .attrs = mod_attrs
+};
+
+
 int mod_sysfs_create_file(struct device *mod_dev){
+#ifdef attr
     int ret;
+
     ret = sysfs_create_file(&mod_dev->kobj, &dev_attr_max_size.attr);
     if(ret){
         return ret;
     }
     return sysfs_create_file(&mod_dev->kobj, &dev_attr_serial_num.attr);
+#else
+    return sysfs_create_group(&mod_dev->kobj, &mod_attrs_group);
+#endif
 }
 
 

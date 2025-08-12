@@ -38,7 +38,6 @@ __used __section("__versions") = {
 	{ 0xc8dcc62a, "krealloc" },
 	{ 0xe3ec2f2b, "alloc_chrdev_region" },
 	{ 0x67a33343, "devm_kmalloc" },
-	{ 0xbdba11aa, "sysfs_create_file_ns" },
 	{ 0x81ef79db, "platform_driver_unregister" },
 	{ 0x1fc34ff, "class_destroy" },
 	{ 0xbdfb6dbb, "__fentry__" },
@@ -50,6 +49,7 @@ __used __section("__versions") = {
 	{ 0x3a1b27aa, "_dev_err" },
 	{ 0xf4ee463a, "device_create" },
 	{ 0xc74fa6a1, "class_create" },
+	{ 0x6059ecc8, "sysfs_create_group" },
 	{ 0x5b8239ca, "__x86_return_thunk" },
 	{ 0xfc802b99, "__platform_driver_register" },
 	{ 0x3c3ff9fd, "sprintf" },
@@ -64,4 +64,4 @@ __used __section("__versions") = {
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "FB161F514D29794F815E0BD");
+MODULE_INFO(srcversion, "796213AB6BB67A88BB1C5B3");
