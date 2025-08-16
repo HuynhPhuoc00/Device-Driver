@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/008lcd_driver/gpio-sysfs.mod := { echo  /home/phuoc/Documents/Device-Driver/custom_drivers/008lcd_driver/gpio-sysfs.o;  echo; } > /home/phuoc/Documents/Device-Driver/custom_drivers/008lcd_driver/gpio-sysfs.mod

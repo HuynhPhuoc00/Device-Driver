@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/008lcd_driver/Module.symvers := sed 's/ko$$/o/' /home/phuoc/Documents/Device-Driver/custom_drivers/008lcd_driver/modules.order | scripts/mod/modpost -m    -o /home/phuoc/Documents/Device-Driver/custom_drivers/008lcd_driver/Module.symvers -e -i Module.symvers   -T -
