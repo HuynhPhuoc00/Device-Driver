@@ -1,0 +1,33 @@
+/*
+ * lcd2004.h
+ *
+ *  Created on: Jun 20, 2025
+ *      Author: Administrator
+ */
+
+#ifndef INC_I2C_LCD_H_
+#define INC_I2C_LCD_H_
+
+// #ifdef __cplusplus
+// extern "C" {
+// #endif
+
+#include <linux/module.h>
+#include <linux/i2c.h>
+#include <linux/of.h>
+#include <linux/delay.h>
+#include <linux/types.h>
+
+// void i2c_Config();
+void i2c_lcd_init(struct i2c_client *client);
+void i2c_send_cmd_lcd(char data);
+void i2c_send_data_lcd(char data);
+void i2c_send_string(const char *data);
+void i2c_lcd_put_cur(int row, int col);
+void i2c_lcd_clear(void);
+
+// #ifdef __cplusplus
+// }
+// #endif
+
+#endif /* INC_I2C_LCD_H_ */
