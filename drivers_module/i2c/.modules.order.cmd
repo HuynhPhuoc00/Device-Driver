@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Documents/Device-Driver/drivers_module/lcd_i2c/modules.order := {   echo /home/phuoc/Documents/Device-Driver/drivers_module/lcd_i2c/lcd_sysfs.ko; :; } | awk '!x[$$0]++' - > /home/phuoc/Documents/Device-Driver/drivers_module/lcd_i2c/modules.order
