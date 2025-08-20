@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.mod := { echo  /home/phuoc/Device-Driver/drivers_module/spi/spi-sysfs.o;  echo; } > /home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.mod

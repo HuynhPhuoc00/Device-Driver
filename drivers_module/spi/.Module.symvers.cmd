@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Device-Driver/drivers_module/spi/Module.symvers := sed 's/ko$$/o/' /home/phuoc/Device-Driver/drivers_module/spi/modules.order | scripts/mod/modpost -m    -o /home/phuoc/Device-Driver/drivers_module/spi/Module.symvers -e -i Module.symvers   -T -

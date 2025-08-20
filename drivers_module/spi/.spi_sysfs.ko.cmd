@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.ko := arm-linux-gnueabihf-ld -r  -EL -z noexecstack --no-warn-rwx-segments  --build-id=sha1  -T scripts/module.lds -o /home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.ko /home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.o /home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.mod.o;  true

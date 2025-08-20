@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Device-Driver/drivers_module/spi/modules.order := {   echo /home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.ko; :; } | awk '!x[$$0]++' - > /home/phuoc/Device-Driver/drivers_module/spi/modules.order

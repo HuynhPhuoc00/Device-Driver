@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.o := arm-linux-gnueabihf-ld  -EL -z noexecstack --no-warn-rwx-segments    -r -o /home/phuoc/Device-Driver/drivers_module/spi/spi_sysfs.o /home/phuoc/Device-Driver/drivers_module/spi/spi-sysfs.o
