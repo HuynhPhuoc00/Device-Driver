@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define I2C_CLASS "i2c_bus_class"
+#define LCD1602_NAME "lcd1602"
+
 int main(int argc, char *argv[])
 {
     FILE *fp;
@@ -10,13 +13,13 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    fp = fopen("/sys/class/lcd1602/lcd1602/text", "w");
+    fp = fopen("/sys/class/i2c_bus_class/lcd1602/text", "w");
     if (!fp) {
-        perror("open /sys/class/lcd1602/lcd1602/text");
+        perror("open /sys/class/i2c_bus_class/lcd1602/text");
         return -1;
     }
 
-    fprintf(fp, "%s", argv);
+    fprintf(fp, "%s", argv[1]);
     fflush(fp);
     fclose(fp);
 
