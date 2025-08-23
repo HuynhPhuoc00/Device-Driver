@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod := printf '%s\n'   module_driver_dt.o | awk '!x[$$0]++ { print("/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/"$$0) }' > /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/module_driver_dt.mod

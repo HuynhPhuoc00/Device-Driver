@@ -1,2 +1,0 @@
-/home/phuoc/Documents/Device-Driver/custom_drivers/007gpio_sysfs/gpio-sysfs.o
-

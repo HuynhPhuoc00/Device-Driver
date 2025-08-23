@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/modules.order := {   echo /home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/mod_sysfs.o; :; } > /home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/modules.order

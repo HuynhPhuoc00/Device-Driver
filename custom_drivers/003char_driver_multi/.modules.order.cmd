@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/workspace/ldd/custom_drivers/003char_driver_multi/modules.order := {   echo /home/phuoc/workspace/ldd/custom_drivers/003char_driver_multi/module_n.o; :; } > /home/phuoc/workspace/ldd/custom_drivers/003char_driver_multi/modules.order

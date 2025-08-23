@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/mod_sysfs.mod := printf '%s\n'   module_driver_dt_sysfs.o mod_syscalls.o | awk '!x[$$0]++ { print("/home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/"$$0) }' > /home/phuoc/Documents/Device-Driver/custom_drivers/006mod_sysfs/mod_sysfs.mod

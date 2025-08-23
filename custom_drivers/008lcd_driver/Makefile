@@ -2,16 +2,16 @@ obj-m := gpio-sysfs.o
 
 ARCH = arm
 CROSS_COMPILE = arm-linux-gnueabihf-
-KERNELDIR = ../../source/linux_bbb_5.10/
+KERNELDIR = ../../source/linux/
 HOST_KERNELDIR = /lib/modules/$(shell uname -r)/build/
 
-PATH_DTBS = ../../source/linux_bbb_5.10/arch/arm/boot/dts/am335x-boneblack.dtb
+PATH_DTBS = ../../source/linux/arch/arm/boot/dts/am335x-boneblack.dtb
 DEBIAN_FOLDER = /home/debian/drivers
 
 all:
 	make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERNELDIR) M=$(PWD) modules
 
-clean: clean-host
+clean:
 	make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERNELDIR) M=$(PWD) clean
 
 help:

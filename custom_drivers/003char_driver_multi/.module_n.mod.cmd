@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/workspace/ldd/custom_drivers/003char_driver_multi/module_n.mod := printf '%s\n'   module_n.o | awk '!x[$$0]++ { print("/home/phuoc/workspace/ldd/custom_drivers/003char_driver_multi/"$$0) }' > /home/phuoc/workspace/ldd/custom_drivers/003char_driver_multi/module_n.mod

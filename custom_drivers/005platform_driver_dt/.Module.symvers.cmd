@@ -1,1 +1,0 @@
-savedcmd_/home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/Module.symvers -T /home/phuoc/Documents/Device-Driver/custom_drivers/005platform_driver_dt/modules.order -i Module.symvers -e 

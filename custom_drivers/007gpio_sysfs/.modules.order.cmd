@@ -1,1 +1,0 @@
-cmd_/home/phuoc/Documents/Device-Driver/custom_drivers/007gpio_sysfs/modules.order := {   echo /home/phuoc/Documents/Device-Driver/custom_drivers/007gpio_sysfs/gpio-sysfs.ko; :; } | awk '!x[$$0]++' - > /home/phuoc/Documents/Device-Driver/custom_drivers/007gpio_sysfs/modules.order

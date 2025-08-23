@@ -254,11 +254,11 @@ static int __init __my_module_driver_init(void){
     return 0; // Return 0 to indicate successful loading
 
 cdev_del:
-class_destroy:
     for (int i = 0; i < NO_OF_DEVICES; i++) {
         device_destroy(module_private_data.class_module, module_private_data.dev_num + i);
         cdev_del(&module_private_data.module_data[i].cdev);
     }
+class_destroy:
     class_destroy(module_private_data.class_module);
 unreg_chrdev:
     printk(KERN_ERR "Failed to add cdev.\n");
