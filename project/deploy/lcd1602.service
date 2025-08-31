@@ -1,0 +1,9 @@
+[Unit]
+Description=LCD1602 Display Service
+
+[Service]
+ExecStart=/usr/bin/lcd1602_app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

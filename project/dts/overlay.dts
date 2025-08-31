@@ -1,0 +1,84 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+    /* I2C2 devices */
+    fragment@0 {
+        target = <&i2c2>;
+        __overlay__ {
+            status = "okay";
+
+            lcd1602: lcd1602@27 {
+                compatible = "org,lcd1602";
+                reg = <0x27>;
+            };
+            sht30: sht30@44 {
+                compatible = "org,sht3x";
+                reg = <0x44>;
+            };
+        };
+    };
+
+    /* Pinmux cho SPI0 + GPIO DC/RESET + Touch IRQ */
+    fragment@1 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            ili9341_pins: pinmux_ili9341_pins {
+                pinctrl-single,pins = <
+                    0x150 0x30   /* P9_17 spi0_cs0 */
+                    0x19c 0x30   /* P9_28 spi0_cs1  (đúng cs1) */
+                    0x154 0x30   /* P9_18 spi0_d1 (MOSI) */
+                    0x158 0x30   /* P9_21 spi0_d0 (MISO) */
+                    0x15c 0x30   /* P9_22 spi0_sclk */
+                    0x040 0x07   /* P9_15 gpio1_16 (DC) */
+                    0x078 0x07   /* P9_12 gpio1_28 (RESET) */
+                    0x1ac 0x37   /* P9_27 gpio3_19 (T_IRQ) input pullup */
+                >;
+            };
+        };
+    };
+
+    /* SPI0 + ILI9341 device + ADS7846 touchscreen */
+    fragment@2 {
+        target = <&spi0>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            ili9341: ili9341@0 {
+                compatible = "ilitek,ili9341";
+                reg = <0>;                     /* CS0 */
+                pinctrl-names = "default";
+                pinctrl-0 = <&ili9341_pins>;
+                spi-max-frequency = <32000000>;
+
+                dc-gpios = <&gpio1 16 0>;     /* P9_15 */
+                reset-gpios = <&gpio1 28 1>;  /* P9_12 */
+                rotate = <90>;
+                buswidth = <8>;
+                bgr;
+            };
+
+            ads7846: touchscreen@1 {
+                compatible = "ti,ads7846";
+                reg = <1>;                   /* CS1 */
+                spi-max-frequency = <2000000>;
+
+                interrupt-parent = <&gpio3>;
+                interrupts = <19 0>;          /* gpio3_19 */
+                linux,irq-type = <1>;         /* falling edge */
+                pendown-gpio = <&gpio3 19 0>;
+
+                ti,x-min = /bits/ 16 <200>;
+                ti,x-max = /bits/ 16 <3900>;
+                ti,y-min = /bits/ 16 <200>;
+                ti,y-max = /bits/ 16 <3900>;
+                ti,pressure-min = /bits/ 16 <0>;
+                ti,pressure-max = /bits/ 16 <255>;
+            };
+        };
+    };
+};
