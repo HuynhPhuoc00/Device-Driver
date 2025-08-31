@@ -3,10 +3,10 @@
 # ============================================================================
 
 # PROJECT STRUCTURE 
-DRV_DIRS = /home/phuoc/Doc/project/drv/lcd \
-			/home/phuoc/Doc/project/drv/sht30
-APP_DIR = /home/phuoc/Doc/project/app
-DTBO_DIR = /home/phuoc/Doc/project/dts
+DRV_DIRS = $(PWD)/drv/lcd \
+			$(PWD)/drv/sht30
+APP_DIR = $(PWD)/app
+DTBO_DIR =$(PWD)/dts
 
 # ============================================================================
 # TARGET STRUCTURE
