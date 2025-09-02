@@ -50,7 +50,10 @@ target:
 	@echo "Building target..."
 	@echo "==========================================================================="
 
-	make -C $(DRV_DIR) all
+	@for dir in $(DRV_DIRS); do \
+		echo "Building driver in $$dir"; \
+		make -C $$dir all || exit 1; \
+	done
 
 	@echo "==========================================================================="
 	@echo "Build completed successfully!"
@@ -85,7 +88,12 @@ copy-dtb:
 copy-dtbo:
 	scp $(DTBO_DIR)/*.dtbo debian@192.168.137.2:$(DEBIAN_FOLDER)
 copy-drv:
-	scp $(DRV_DIR)/*.ko $(APP_DIR)/*.elf debian@192.168.137.2:$(DEBIAN_FOLDER)
+	@for dir in $(DRV_DIRS); do \
+		echo "Copy in $$dir"; \
+		scp $$dir/*.ko debian@192.168.137.2:$(DEBIAN_FOLDER); \
+	done
+copy-elf:
+	scp $(APP_DIR)/*.elf debian@192.168.137.2:$(DEBIAN_FOLDER)
 
 clean:
 	@echo "==========================================================================="
