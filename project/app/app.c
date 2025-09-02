@@ -98,5 +98,29 @@ int main() {
     munmap(fbmem, screensize);
     close(fb);
 
+    // Test cam ung
+    int fd = open("/dev/input/event1", O_RDONLY);
+    if (fd < 0) {
+        perror("open");
+        return 1;
+    }
+
+    struct input_event ev;
+    while (1) {
+        if (read(fd, &ev, sizeof(ev)) == sizeof(ev)) {
+            if (ev.type == EV_ABS) {
+                if (ev.code == ABS_X) {
+                    printf("X = %d\n", ev.value);
+                }
+                if (ev.code == ABS_Y) {
+                    printf("Y = %d\n", ev.value);
+                }
+            }
+            if (ev.type == EV_KEY && ev.code == BTN_TOUCH && ev.value == 0) {
+                printf("Touch released\n");
+            }
+        }
+    }
+
     return 0;
 }
