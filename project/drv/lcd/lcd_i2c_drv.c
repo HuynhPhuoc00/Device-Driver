@@ -9,34 +9,34 @@
 
 struct i2c_client *client_for_drv;
 
-void i2c_lcd_init(struct i2c_client *client){
+void lcd_init(struct i2c_client *client){
 	client_for_drv = client;
 	msleep(10);
-	i2c_send_cmd_lcd (0x33); /* set 4-bits interface */
-	i2c_send_cmd_lcd (0x32);msleep(1);
+	lcd_send_cmd (0x33); /* set 4-bits interface */
+	lcd_send_cmd (0x32);msleep(1);
 //    msleep(1); i2c_send_cmd_lcd (0x20);  // 4bit mode
-	msleep(1); i2c_send_cmd_lcd (0x28); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
+	msleep(1); lcd_send_cmd (0x28); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
 
 	msleep(1);
-	i2c_send_cmd_lcd(0x01); msleep(1); // clear display
-	i2c_send_cmd_lcd(0x06); msleep(2); // entry mode
-	i2c_send_cmd_lcd(0x0C); msleep(1); // set on display
-	i2c_send_cmd_lcd(0x02); msleep(1); // move cursor to home
+	lcd_send_cmd(0x01); msleep(1); // clear display
+	lcd_send_cmd(0x06); msleep(2); // entry mode
+	lcd_send_cmd(0x0C); msleep(1); // set on display
+	lcd_send_cmd(0x02); msleep(1); // move cursor to home
 
-	i2c_lcd_clear();
+	lcd_clear();
 
-	i2c_lcd_put_cur(0,0);
-	i2c_send_string("Init LCD1 succes"); // Test
+	// i2c_lcd_put_cur(0,0);
+	// i2c_send_string("Init LCD1"); // Test
 
-	i2c_lcd_put_cur(1,0);
-	i2c_send_string("Init LCD2 succes"); // Test
+	// i2c_lcd_put_cur(1,0);
+	// i2c_send_string("Init LCD2"); // Test
 
 	msleep(500);
 	// i2c_lcd_clear();
 }
 
 
-void i2c_send_cmd_lcd(char data){
+void lcd_send_cmd(char data){
 	char data_u, data_l;
 	uint8_t data_t[4];
 	data_u = (data&0xf0);
@@ -48,7 +48,7 @@ void i2c_send_cmd_lcd(char data){
 	i2c_master_send(client_for_drv, data_t, 4);
 }
 
-void i2c_send_data_lcd(char data){
+void lcd_send_data(char data){
 	char data_u, data_l;
 	uint8_t data_t[4];
 	data_u = (data&0xf0);
@@ -60,19 +60,20 @@ void i2c_send_data_lcd(char data){
 	i2c_master_send(client_for_drv, data_t, 4);
 }
 
-void i2c_send_string(const char *data){
+void lcd_send_string(const char *data){
 	while (*data){
-		i2c_send_data_lcd(*data++);
+		lcd_send_data(*data++);
 	}
 }
 
-void i2c_lcd_clear(void){
-	i2c_send_cmd_lcd(0x01);msleep(2);
+void lcd_clear(void){
+	lcd_send_cmd(0x01);msleep(2);
 }
 
-void i2c_lcd_put_cur(int row, int col){
+void lcd_put_cur(int row, int col){
     uint8_t addr = (row == 0) ? (0x00 + col) : (0x40 + col);
-    i2c_send_cmd_lcd(0x80 | addr);
+	pr_info("lcd1602: put_cur row=%d col=%d -> cmd=0x%02X\n", row, col, 0x80|addr);
+    lcd_send_cmd(0x80 | addr);
     // i2c_send_cmd_lcd (col);
 }
 

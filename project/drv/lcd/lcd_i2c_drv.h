@@ -19,12 +19,12 @@
 #include <linux/types.h>
 
 // void i2c_Config();
-void i2c_lcd_init(struct i2c_client *client);
-void i2c_send_cmd_lcd(char data);
-void i2c_send_data_lcd(char data);
-void i2c_send_string(const char *data);
-void i2c_lcd_put_cur(int row, int col);
-void i2c_lcd_clear(void);
+void lcd_init(struct i2c_client *client);
+void lcd_send_cmd(char data);
+void lcd_send_data(char data);
+void lcd_send_string(const char *data);
+void lcd_put_cur(int row, int col);
+void lcd_clear(void);
 
 // #ifdef __cplusplus
 // }

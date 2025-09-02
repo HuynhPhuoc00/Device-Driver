@@ -23,8 +23,7 @@ struct module_private_data {
 };
 
 // Driver private data structure
-struct i2c_private_drv
-{
+struct lcd_private_drv{
     int total_devices; // Total number of devices
     dev_t dev_num; // This holds the device number
     struct i2c_client *g_client;
@@ -35,7 +34,7 @@ struct i2c_private_drv
     struct module_private_data module_data; // Array of module data for each device
 };
 
-struct i2c_private_drv lcd_drv = {
+struct lcd_private_drv lcd_drv = {
     .total_devices = NO_OF_DEVICES,
     .module_data = {
         .serial_number = "001",
@@ -46,8 +45,7 @@ static ssize_t text_store(struct device *dev,
                           struct device_attribute *attr,
                           const char *buf, size_t count)
 {
-    i2c_lcd_clear();
-    i2c_send_string(buf);
+    lcd_send_string(buf);
     return count;
 }
 
@@ -77,7 +75,7 @@ static ssize_t set_xy_store(struct device *dev,
     }
 
     pr_info("lcd1602: set cursor row=%d col=%d\n", row, col);
-    i2c_lcd_put_cur(row, col);
+    lcd_put_cur(row, col);
 
 out:
     kfree(kbuf);
@@ -85,6 +83,27 @@ out:
 }
 
 static DEVICE_ATTR_WO(set_xy);
+
+static ssize_t clear_store(struct device *dev,
+                          struct device_attribute *attr,
+                          const char *buf, size_t count)
+{
+    lcd_clear();
+    return count;
+}
+
+static DEVICE_ATTR_WO(clear);
+
+static struct attribute *lcd_attrs[] = {
+    &dev_attr_text.attr,
+    &dev_attr_set_xy.attr,
+    &dev_attr_clear.attr,
+    NULL
+};
+static struct attribute_group lcd_attr_grp ={
+    .attrs = lcd_attrs,
+    NULL
+};
 
 static const struct file_operations fops = {
     .owner          = THIS_MODULE,
@@ -140,12 +159,21 @@ static int lcd_sysfs_probe(struct i2c_client *client, const struct i2c_device_id
         goto cdev_del;
     }
 
-    device_create_file(lcd_drv.device_module, &dev_attr_text);
-    device_create_file(lcd_drv.device_module, &dev_attr_set_xy);
-    
+    ret = sysfs_create_group(&lcd_drv.device_module->kobj, &lcd_attr_grp);
+    if (ret) {
+        dev_err(lcd_drv.device_module,
+                "failed to create sysfs group: %d\n", ret);
+        goto cdev_del;
+    }
     pr_info("probed: /dev/lcd1602, sysfs in /sys/class/%s/\n",CLASS_NAME);
 
-    i2c_lcd_init(lcd_drv.g_client);
+    lcd_init(lcd_drv.g_client);
+    
+	// i2c_lcd_put_cur(0,0);
+	// i2c_send_string("Init LCD1"); // Test
+
+	// i2c_lcd_put_cur(1,0);
+	// i2c_send_string("Init LCD2"); // Test
     return 0;
 
 cdev_del:
@@ -162,8 +190,7 @@ out:
 }
 
 static int lcd_sysfs_remove(struct i2c_client *client){
-    device_remove_file(lcd_drv.device_module, &dev_attr_text);
-    device_remove_file(lcd_drv.device_module, &dev_attr_set_xy);
+    sysfs_remove_group(&lcd_drv.device_module->kobj, &lcd_attr_grp);
 
     device_destroy(lcd_drv.class_module, lcd_drv.dev_num);
     cdev_del(&lcd_drv.module_data.cdev);
@@ -207,7 +234,7 @@ static int __init __my_module_driver_init(void){
 
 static void __exit __my_module_driver_exit(void){
     i2c_del_driver(&lcd_driver);
-    i2c_lcd_clear();
+    lcd_clear();
     pr_info("Module exit\n");
 }
 
