@@ -1,1 +1,0 @@
-cmd_/home/phuoc/Doc/Device-Driver/project/drv/gpio/gpio-sysfs.ko := arm-linux-gnueabihf-ld -r  -EL -z noexecstack --no-warn-rwx-segments  --build-id=sha1  -T scripts/module.lds -o /home/phuoc/Doc/Device-Driver/project/drv/gpio/gpio-sysfs.ko /home/phuoc/Doc/Device-Driver/project/drv/gpio/gpio-sysfs.o /home/phuoc/Doc/Device-Driver/project/drv/gpio/gpio-sysfs.mod.o;  true

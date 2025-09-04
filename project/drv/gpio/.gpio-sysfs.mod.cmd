@@ -1,1 +1,0 @@
-cmd_/home/phuoc/Doc/Device-Driver/project/drv/gpio/gpio-sysfs.mod := { echo  /home/phuoc/Doc/Device-Driver/project/drv/gpio/gpio-sysfs.o;  echo; } > /home/phuoc/Doc/Device-Driver/project/drv/gpio/gpio-sysfs.mod
