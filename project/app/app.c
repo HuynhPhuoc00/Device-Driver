@@ -20,6 +20,27 @@ void delay(int seconds) {
 int main() {
     int fd;
     const char *msg;
+    char buf[64];
+    ssize_t n;
+    // for sht
+    fd = open("/sys/bus/i2c/devices/2-0044/sht_class/sht30/read", O_RDONLY);
+    if (fd < 0) {
+        perror("open");
+        return 1;
+    }
+
+    // Đọc dữ liệu
+    n = read(fd, buf, sizeof(buf) - 1);
+    if (n < 0) {
+        perror("read");
+        close(fd);
+        return 1;
+    }
+
+    buf[n] = '\0';  // thêm ký tự kết thúc chuỗi
+    printf("SHT30 data: %s\n", buf);
+
+    close(fd);
 
     // for lcd i2c
     fd = open("/sys/bus/i2c/devices/2-0027/lcd_class/lcd1602/set_xy", O_WRONLY);
