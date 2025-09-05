@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.mod := { echo  /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht3x_sysfs.o /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht3x.o;  echo; } > /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.mod

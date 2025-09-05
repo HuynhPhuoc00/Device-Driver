@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.ko := arm-linux-gnueabihf-ld -r  -EL -z noexecstack --no-warn-rwx-segments  --build-id=sha1  -T scripts/module.lds -o /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.ko /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.o /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.mod.o;  true

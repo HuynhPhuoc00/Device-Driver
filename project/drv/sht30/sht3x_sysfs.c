@@ -1,11 +1,3 @@
-#include <linux/module.h>
-#include <linux/i2c.h>
-#include <linux/cdev.h>
-#include <linux/device.h>
-#include <linux/fs.h>
-#include <linux/mutex.h>
-#include<linux/kdev_t.h>
-
 #include "sht3x.h"
 
 #define SHT_NAME "sht30"
@@ -43,7 +35,7 @@ struct i2c_private_drv sht_drv = {
 };
 
 /* Device actribute var*/
-static ssize_t readSht_show(struct device *dev,
+static ssize_t read_show(struct device *dev,
                           struct device_attribute *attr,
                           char *buf)
 {
@@ -77,7 +69,7 @@ static ssize_t readSht_show(struct device *dev,
     return len;
 }
 
-static DEVICE_ATTR_RO(readSht);
+static DEVICE_ATTR_RO(read);
 
 static const struct file_operations fops = {
     .owner          = THIS_MODULE,
@@ -133,7 +125,7 @@ static int sht_sysfs_probe(struct i2c_client *client, const struct i2c_device_id
         goto cdev_del;
     }
 
-    ret = device_create_file(sht_drv.device_module, &dev_attr_readSht);
+    ret = device_create_file(sht_drv.device_module, &dev_attr_read);
     if (ret) {
         pr_info("Failed to create sysfs attr: %d\n", ret);
         goto device_destroy;
@@ -161,7 +153,7 @@ out:
 
 static int sht_sysfs_remove(struct i2c_client *client){
     if(sht_drv.device_module){
-        device_remove_file(sht_drv.device_module, &dev_attr_readSht);
+        device_remove_file(sht_drv.device_module, &dev_attr_read);
     }
 
     device_destroy(sht_drv.class_module, sht_drv.dev_num);

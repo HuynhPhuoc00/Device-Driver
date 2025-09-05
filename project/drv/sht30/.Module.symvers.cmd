@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Doc/Device-Driver/project/drv/sht30/Module.symvers := sed 's/ko$$/o/' /home/phuoc/Doc/Device-Driver/project/drv/sht30/modules.order | scripts/mod/modpost -m    -o /home/phuoc/Doc/Device-Driver/project/drv/sht30/Module.symvers -e -i Module.symvers   -T -

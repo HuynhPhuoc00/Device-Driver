@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Doc/Device-Driver/project/drv/sht30/modules.order := {   echo /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.ko; :; } | awk '!x[$$0]++' - > /home/phuoc/Doc/Device-Driver/project/drv/sht30/modules.order

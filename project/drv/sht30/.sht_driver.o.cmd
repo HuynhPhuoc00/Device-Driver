@@ -1,0 +1,1 @@
+cmd_/home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.o := arm-linux-gnueabihf-ld  -EL -z noexecstack --no-warn-rwx-segments    -r -o /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht_driver.o /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht3x_sysfs.o /home/phuoc/Doc/Device-Driver/project/drv/sht30/sht3x.o
